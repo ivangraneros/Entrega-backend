@@ -1,9 +1,9 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 
-const filePath = path.join(__dirname, "data", 'data/products.json');
+const filePath = path.join(__dirname, "data", './data/products.json');
 
 class ProductManager {
     constructor(filePath) {
@@ -12,19 +12,21 @@ class ProductManager {
 
     async #readFile() {
         try {
-            const data = await fs.readFileSync(this.filePath, "utf8");
-            return JSON.parse(data)
+            const data = await fs.readFile(this.filePath, "utf8");
+            return JSON.parse(data || "[]");
         } catch (error) {
             if (error.code === 'ENOENT') {
                 await this.#writeFile([]);
                 return [];
+            } else {
+                console.error("Error al leer archivo:", error);
             }
         }
     }
 
     async #writeFile(products) {
         try {
-            await fs.writeFileSync(this.filePath, JSON.stringify(products, null, 2));
+            await fs.writeFile(this.filePath, JSON.stringify(products, null, 2));
         } catch (error) {
             console.error("Error al escribir archivo:", error);
         }
@@ -50,8 +52,10 @@ class ProductManager {
         };
         products.push(newProduct);
         await this.#writeFile(products);
+        return newProduct;
         } catch (error) {
             console.error("Error al agregar producto:", error);
+            throw error;
         }
     }
 
@@ -85,7 +89,7 @@ class ProductManager {
             if (!searchProduct) {
                 throw new Error("Producto no encontrado");
             }
-            const producto = {
+            const product = {
                 ...searchProduct,
                 dataUpdateProduct,
             };

@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "id": "48a0af4f-b80a-4372-b636-4bc7e41c41a1",
+    "title": "Camiseta básica",
+    "description": "Camiseta de algodón 100%",
+    "code": "TSHIRT001",
+    "price": 3500,
+    "status": true,
+    "stock": 25,
+    "category": "ropa",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  },
+  {
+    "id": "be8471d2-99ba-4542-8089-492da8abbd20",
+    "title": "Camiseta básica",
+    "description": "Camiseta de algodón 100%",
+    "code": "TSHIRT001",
+    "price": 3500,
+    "status": true,
+    "stock": 25,
+    "category": "ropa",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  },
+  {
+    "id": "24bfae98-1da7-4757-85e3-3f0d6937fa02",
+    "title": "Camiseta azul",
+    "description": "Camiseta de algodón 100%",
+    "code": "TSHIRT001",
+    "price": 3500,
+    "status": true,
+    "stock": 25,
+    "category": "ropa",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  },
+  {
+    "id": "531672a3-314a-4fa1-8a7c-ccd815423617",
+    "title": "Camiseta básica",
+    "description": "Camiseta de algodón 100%",
+    "code": "TSHIRT001",
+    "price": 3500,
+    "status": true,
+    "stock": 25,
+    "category": "ropa",
+    "thumbnails": [
+      "img/camiseta1.jpg"
+    ]
+  }
+]

@@ -5,8 +5,8 @@ const port = 8080
 const CartManager = require ('./cartManager');
 const ProductManager = require('./productManager');
 
-const newCartManager = new CartManager();
-const newProductManager = new ProductManager();
+const newCartManager = new CartManager("data/carts.json");
+const newProductManager = new ProductManager("data/products.json");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -59,17 +59,18 @@ app.get('/', (req, res) => {
   }
 });
 
-app.get("/api/products", (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
-    res.status(200).send("Lista de productos")
+    const products = await newProductManager.getAllProducts();
+    res.status(200).json(products);
   } catch (error) {
     res.status(500).json('Error al obtener productos')
   }
 });
 
-app.get("/api/products/:id", (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
   const { id } = req.params;
-  const product = newProductManager.getProductById(id);
+  const product = await newProductManager.getProductById(id);
   if (product) {
     res.status(200).json(product);
   } else {
@@ -77,10 +78,11 @@ app.get("/api/products/:id", (req, res) => {
   }
 });
 
-app.post("/api/products", (req, res) => {
+app.post("/api/products", async (req, res) => {
   try {
   const productData = req.body;
-  const newProduct = newProductManager.addProduct(productData);
+  console.log("Body recibido:", productData);
+  const newProduct =  await newProductManager.addProduct(productData);
   res.status(201).json(newProduct);
   } catch (error) {
     res.status(500).json('Error al agregar producto')
@@ -108,28 +110,32 @@ app.delete("/api/products/:id", (req, res) => {
   }
 });
 
+
 // CRUD Carts
 
-app.get("/api/carts", (req, res) => {
+app.get("/api/carts", async (req, res) => {
   try {
-    res.status(200).send("Carrito")
+    const carts = await newCartManager.getCarts();
+    res.status(200).json(carts);
   } catch (error) {
-    res.status(500).json('Error al obtener carrito')
+    res.status(500).json({ message: "Error al obtener carrito" });
   }
 });
 
-app.post("/api/carts", (req, res) => {
+
+app.post("/api/carts", async (req, res) => {
   try {
-    const newCart = newCartManager.createCart();
+    const newCart = await newCartManager.createCart();
     res.status(201).json(newCart);
   } catch (error) {
-    res.status(500).json('Error al crear carrito')
+    res.status(500).json({ message: "Error al crear carrito" });
   }
 });
 
-  app.get("/api/carts/:id", (req, res) => {
+
+  app.get("/api/carts/:id",async (req, res) => {
     const { id } = req.params;
-    const cart = newCartManager.getCartById(id);
+    const cart = await newCartManager.getCartById(id);
     if (cart) {
       res.status(200).json(cart);
     } else {
@@ -137,15 +143,16 @@ app.post("/api/carts", (req, res) => {
     }
 });
 
-  app.post("/api/carts/:cartId/products/:productId", (req, res) => {
+  app.post("/api/carts/:cartId/products/:productId",async (req, res) => {
     const { cartId, productId } = req.params;
-    const updatedCart = newCartManager.addProductToCart(cartId, productId);
+    const updatedCart = await newCartManager.addProductToCart(cartId, productId);
     if (updatedCart) {
       res.status(200).json(updatedCart);
     } else {
-      res.status(404).json({ message: "Carrito no encontrado" });
+      res.status(404).json({ message: "Error interno" });
     }
 });
+
 
 
 app.listen(port, () => {
