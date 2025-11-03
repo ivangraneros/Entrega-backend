@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 8080
+
 
 const CartManager = require ('./cartManager');
 const ProductManager = require('./productManager');
@@ -155,6 +155,4 @@ app.post("/api/carts", async (req, res) => {
 
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
-});
+module.exports = app;
