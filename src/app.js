@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const routes = require('./routes/index');
-
+const path = require('path');
 
 const handlebars = require('express-handlebars');
 
@@ -15,12 +15,13 @@ const newCartManager = new CartManager("data/carts.json");
 const newProductManager = new ProductManager("data/products.json");
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 
 
-app.use("/public", express.static(paths.public));
+app.use(express.static(paths.public));
 
+console.log(paths.public);
 
 
 app.get('/', (req, res) => {

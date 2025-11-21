@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #333;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 30px;
+}
+
+.navbar ul li {
+    margin-right: 30px;
+    color: white;
+    cursor: pointer;
+}
