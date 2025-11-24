@@ -1,5 +1,10 @@
 <div>
     {{> navbar }}
     <h1>Bienvenido a la página de inicio</h1>
+    <ul>
+        {{#each products}}
+            <li>{{this.title}} - ${{this.price}}</li>
+        {{/each}}
+    </ul>
     {{> footer }}
 </div>

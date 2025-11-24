@@ -1,4 +1,7 @@
-<div>
-    <h1>Productos</h1>
-    <p>Aquí puedes ver los productos disponibles.</p>
-</div>
+<h1>Lista de productos</h1>
+
+<ul>
+  {{#each products}}
+    <li>{{this.title}} - ${{this.price}}</li>
+  {{/each}}
+</ul>

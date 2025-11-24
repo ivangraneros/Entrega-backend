@@ -9,11 +9,12 @@ const newProductManager = new ProductManager("data/products.json");
 router.get("/", async (req, res) => {
   try {
     const products = await newProductManager.getAllProducts();
-    res.status(200).json(products);
+    res.render("/realTimeProducts", { products });
   } catch (error) {
-    res.status(500).json('Error al obtener productos')
+    res.status(500).json("Error al obtener productos");
   }
 });
+
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;

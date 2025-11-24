@@ -1,4 +1,14 @@
+{{> navbar }}
 <div>
     <h1>Carrito de Compras</h1>
     <p>Aquí puedes ver los productos que has añadido a tu carrito.</p>
+    <ul>
+  {{#each carts}}
+    <li>ID: {{this.id}} - Productos: {{this.products.length}}</li>
+  {{else}}
+    <li>No hay carritos disponibles</li>
+  {{/each}}
+</ul>
 </div>
+
+{{> footer }}

@@ -1,0 +1,32 @@
+{{> navbar }}
+<h1>Real Time Products ⚡</h1>
+
+<ul id="lista-productos">
+  {{#each products}}
+    <li>{{this.title}} - ${{this.price}}</li>
+  {{/each}}
+</ul>
+
+<h3>Agregar producto</h3>
+<form id="formProducto">
+  <input type="text" id="title" placeholder="Título" required />
+  <input type="text" id="description" placeholder="Descripción" required />
+  <input type="number" id="price" placeholder="Precio" required />
+  <input type="text" id="status" placeholder="Estado" required />
+  <input type="text" id="category" placeholder="Categoría" required />
+  <input type="text" id="code" placeholder="Código" required />
+  <input type="number" id="stock" placeholder="Stock" required />
+  <button type="submit">Agregar</button>
+</form>
+
+
+<h3>Eliminar producto</h3>
+<form id="formEliminar">
+  <input type="text" id="id" placeholder="ID del producto" required />
+  <button type="submit">Eliminar</button>
+</form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/realtime.js"></script>
+
+{{> footer }}

@@ -1,31 +1,5 @@
 [
   {
-    "id": "48a0af4f-b80a-4372-b636-4bc7e41c41a1",
-    "title": "Camiseta básica",
-    "description": "Camiseta de algodón 100%",
-    "code": "TSHIRT001",
-    "price": 3500,
-    "status": true,
-    "stock": 25,
-    "category": "ropa",
-    "thumbnails": [
-      "img/camiseta1.jpg"
-    ]
-  },
-  {
-    "id": "be8471d2-99ba-4542-8089-492da8abbd20",
-    "title": "Camiseta básica",
-    "description": "Camiseta de algodón 100%",
-    "code": "TSHIRT001",
-    "price": 3500,
-    "status": true,
-    "stock": 25,
-    "category": "ropa",
-    "thumbnails": [
-      "img/camiseta1.jpg"
-    ]
-  },
-  {
     "id": "24bfae98-1da7-4757-85e3-3f0d6937fa02",
     "title": "Camiseta azul",
     "description": "Camiseta de algodón 100%",
@@ -50,5 +24,38 @@
     "thumbnails": [
       "img/camiseta1.jpg"
     ]
+  },
+  {
+    "id": "677700bb-620a-4d5a-ae61-797ffc04c4d7",
+    "title": "short",
+    "description": "short",
+    "code": "4MV78N",
+    "price": 80000,
+    "status": "true",
+    "stock": 1,
+    "category": "ropa",
+    "thumbnails": []
+  },
+  {
+    "id": "ce9c852a-d75f-4d03-a114-7ca4ed4fea0d",
+    "title": "gorra",
+    "description": "comoda gorra cerrada",
+    "code": "MQ3YX8",
+    "price": 15000,
+    "status": "true",
+    "stock": 25,
+    "category": "gorras",
+    "thumbnails": []
+  },
+  {
+    "id": "5fc410de-1d38-413d-bb3e-9d4af9ced9b4",
+    "title": "pantalon de jean",
+    "description": "pantalon de jean azul",
+    "code": "QVE9I5",
+    "price": 80000,
+    "status": "true",
+    "stock": 10,
+    "category": "pantalones",
+    "thumbnails": []
   }
 ]
