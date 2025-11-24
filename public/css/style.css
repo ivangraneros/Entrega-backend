@@ -1,3 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* navbar */
+
 .navbar {
     background-color: #333;
 }
@@ -10,8 +19,82 @@
     padding: 30px;
 }
 
-.navbar ul li {
+.navbar ul a {
     margin-right: 30px;
     color: white;
     cursor: pointer;
+    text-decoration: none;
+}
+
+
+/* inicio */
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 2.1rem;
+}
+
+li {
+    width: 500px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #666;
+    list-style: none;
+}
+
+/* productos */
+
+input, h3, button {
+    margin-bottom: 20px;
+    margin-left: 30px;
+    display: block;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+button {
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+}
+
+input {
+    padding: 5px;
+    width: 250px;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid #333;
+}
+
+/* carrito */
+
+p {
+    margin-left: 30px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.lista-carrito {
+    margin-left: 30px;
+    margin-bottom: 20px;
+    list-style: square;
+}
+
+/* footer */
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
 }

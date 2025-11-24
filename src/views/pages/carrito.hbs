@@ -4,7 +4,7 @@
     <p>Aquí puedes ver los productos que has añadido a tu carrito.</p>
     <ul>
   {{#each carts}}
-    <li>ID: {{this.id}} - Productos: {{this.products.length}}</li>
+    <li class="lista-carrito">ID: {{this.id}} - Productos: {{this.products.length}}</li>
   {{else}}
     <li>No hay carritos disponibles</li>
   {{/each}}
