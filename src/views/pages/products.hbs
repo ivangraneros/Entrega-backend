@@ -1,7 +1,15 @@
-<h1>Lista de productos</h1>
+{{> navbar }}
 
-<ul>
-  {{#each products}}
-    <li>{{this.title}} - ${{this.price}}</li>
-  {{/each}}
-</ul>
+<div class="product-container">
+    <h1>{{product.title}}</h1>
+    <p>{{product.description}}</p>
+    <p>Categoría: {{product.category}}</p>
+    <h3>Precio: ${{product.price}}</h3>
+</div>
+<div>
+    <a href="/products">Volver al catálogo</a>
+</div>
+
+<script src="/js/productDetail.js"></script>
+
+{{> footer }}

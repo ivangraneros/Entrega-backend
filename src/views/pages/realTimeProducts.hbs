@@ -1,20 +1,23 @@
 {{> navbar }}
 <h1>Productos</h1>
 
-<ul id="lista-productos">
+{{!-- <ul id="lista-productos">
   {{#each products}}
-    <li>{{this.title}} - ${{this.price}}</li>
+    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+        <h3>{{this.title}}</h3>
+        <p>{{this.description}}</p>
+        <p><strong>Precio:</strong> ${{this.price}}</p>
+        <p style="color: red;"><small>ID para eliminar: {{this._id}}</small></p>
+    </div>
   {{/each}}
-</ul>
+</ul> --}}
 
 <h3>Agregar producto</h3>
 <form id="formProducto">
   <input type="text" id="title" placeholder="Título" required />
   <input type="text" id="description" placeholder="Descripción" required />
   <input type="number" id="price" placeholder="Precio" required />
-  <input type="text" id="status" placeholder="Estado" required />
   <input type="text" id="category" placeholder="Categoría" required />
-  <input type="text" id="code" placeholder="Código" required />
   <input type="number" id="stock" placeholder="Stock" required />
   <button type="submit">Agregar</button>
 </form>
@@ -27,6 +30,6 @@
 </form>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/realtime.js"></script>
+<script src="/js/index.js"></script>
 
 {{> footer }}

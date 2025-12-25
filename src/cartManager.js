@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const { v4: uuidv4 } = require('uuid');
+// const { v4: uuidv4 } = require('uuid');
 
 const filePath = path.join(__dirname, "data", 'data/carts.json');
 
@@ -45,7 +45,7 @@ class CartManager {
     async createCart() {
         const carts = await this.#readFile();
         const newCart = {
-            id: uuidv4(),
+            id: Date.now().toString(),
             products: []
         };
         carts.push(newCart);

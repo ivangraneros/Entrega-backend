@@ -1,14 +1,19 @@
 {{> navbar }}
-<div>
-    <h1>Carrito de Compras</h1>
-    <p>Aquí puedes ver los productos que has añadido a tu carrito.</p>
-    <ul>
-  {{#each carts}}
-    <li class="lista-carrito">ID: {{this.id}} - Productos: {{this.products.length}}</li>
-  {{else}}
-    <li>No hay carritos disponibles</li>
-  {{/each}}
-</ul>
-</div>
+<h1>Tu Carrito</h1>
 
+<div>
+    {{#if cart.products.length}}
+        {{#each cart.products}}
+            <div style="border: 1px solid #000; margin: 10px; padding: 10px;">
+                <h3>Producto: {{this.product.title}}</h3>
+                <p>Categoría: {{this.product.category}}</p>
+                <p>Precio unitario: ${{this.product.price}}</p>
+                <p>Cantidad: {{this.quantity}}</p>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No hay productos en el carrito.</p>
+        <a href="/products">Ir a comprar</a>
+    {{/if}}
+</div>
 {{> footer }}

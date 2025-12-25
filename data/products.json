@@ -57,5 +57,16 @@
     "stock": 10,
     "category": "pantalones",
     "thumbnails": []
+  },
+  {
+    "id": "f34d9d86-0c91-4e6a-95f5-f0dbd459fc8f",
+    "title": "camisa",
+    "description": "camisa blanca con rayas",
+    "code": "HJDKM33",
+    "price": 90000,
+    "status": "true",
+    "stock": 6,
+    "category": "camisas",
+    "thumbnails": []
   }
 ]
