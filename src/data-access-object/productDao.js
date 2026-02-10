@@ -1,5 +1,5 @@
-const Product = require("../models/products.model");
-const mongoose = require('mongoose');
+import Product from "../models/products.model.js";
+import mongoose from 'mongoose';
 
 
 class ProductManager {
@@ -84,4 +84,4 @@ async getAllProducts({ limit = 5, page = 1, sort, query }) {
     }
 }
 
-module.exports = ProductManager;
+export default ProductManager;

@@ -1,0 +1,9 @@
+<h2>Perfil del Usuario (Current)</h2>
+{{#if user}}
+    <p><strong>Nombre:</strong> {{user.first_name}} {{user.last_name}}</p>
+    <p><strong>Email:</strong> {{user.email}}</p>
+    <p><strong>Rol:</strong> {{user.role}}</p>
+    <p><strong>ID de Carrito asociado:</strong> {{user.cart}}</p>
+{{else}}
+    <p>No hay sesión activa.</p>
+{{/if}}

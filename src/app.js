@@ -1,30 +1,41 @@
-const express = require('express')
+import  express from 'express'
 const app = express()
-const routes = require('./routes/index');
-const path = require('path');
-const mongoose = require('mongoose');
+import  routes from './routes/index.js';
+import  path  from 'path';
+import  mongoose  from 'mongoose';
+import passport from "passport";
 
 
-const { Server } = require ("socket.io");
-const handlebars = require('express-handlebars');
+import cookieParser from "cookie-parser"
+import { configPassport } from "./config/passport.config.js";
 
 
-// const CartManager = require ('./cartManager');
-// const ProductManager = require('./productManager');
+import  { Server }  from "socket.io";
+import  handlebars  from'express-handlebars';
 
 
-const CartManager = require("./data-access-object/cartDao.js");
-const ProductManager = require("./data-access-object/productDao");
 
-const { paths } = require('./config/config.js');
+import  CartManager  from"./data-access-object/cartDao.js";
+import  ProductManager  from"./data-access-object/productDao.js";
+
+import { PORT, paths } from './config/config.js';
 
 const newCartManager = new CartManager();
 const newProductManager = new ProductManager();
 
+
+app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(paths.public));
-console.log(paths.public);
+app.set("views", paths.views);
+
+
+
+configPassport()
+app.use(passport.initialize());
+
 
 
 app.get("/", async (req, res) => {
@@ -96,4 +107,4 @@ io.on("connection", async (socket) => {
 });
 
 
-module.exports = app;
+export default app;

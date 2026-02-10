@@ -1,13 +1,9 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const cartModel = require("../models/cart.model");
+import cartModel from "../models/cart.model.js";
+import productsModel from "../models/products.model.js";
 
 
-// const CartManager = require ('../cartManager');  cart manager pero con fs
-
-
-// const CartManager = require("../data-access-object/cartDao");
-// const newCartManager = new CartManager();
 
 
 // vista de handlebars de carrito
@@ -135,4 +131,4 @@ router.delete("/:cid", async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

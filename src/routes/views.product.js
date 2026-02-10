@@ -1,12 +1,11 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const productsModel = require("../models/products.model");
+import productsModel from "../models/products.model.js";
 
 
-// const ProductManager = require ('../productManager'); productmanager pero con fs
 
 
-const ProductManager = require("../data-access-object/productDao");
+import ProductManager from"../data-access-object/productDao.js";
 const newProductManager = new ProductManager();
 
 
@@ -69,4 +68,4 @@ router.post("/", async (req, res) => {
 
 
 
-module.exports = router;
+export default router;

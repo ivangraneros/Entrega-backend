@@ -1,5 +1,6 @@
-const Cart = require("../models/cart.model"); 
-const mongoose = require('mongoose');
+import Cart from "../models/cart.model.js"; 
+import mongoose from 'mongoose';
+
 
 class CartManager {
 
@@ -75,4 +76,4 @@ class CartManager {
     }
 }
 
-module.exports = CartManager;
+export default CartManager;

@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 
-const ProductManager = require ('../productManager');
+import ProductManager from '../data-access-object/productDao.js';
 const newProductManager = new ProductManager("data/products.json");
 
 
@@ -59,4 +59,4 @@ router.delete("/:id", (req, res) => {
 });
 
 
-module.exports = router;
+export default router;
