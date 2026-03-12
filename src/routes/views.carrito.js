@@ -65,12 +65,24 @@ router.get("/:cid", async (req, res) => {
         if (!cart) {
             return res.render("pages/error", { message: "Carrito no existe" });
         }
-        console.log("CONTENIDO DEL CARRITO POBLADO:", JSON.stringify(cart, null, 2));
-        res.render("pages/carrito", { cart }); 
+
+        const total = cart.products.reduce((acc, item) => {
+            const precio = item.product ? item.product.price : 0;
+            return acc + (precio * item.quantity);
+        }, 0);
+
+        res.render("pages/carrito", { 
+            cart, 
+            total,       
+            cartId: cid 
+        }); 
+
     } catch (error) {
+        console.error("Error en el render del carrito:", error);
         res.status(500).json({ message: "Error al obtener el carrito" });
     }
 });
+
 
 router.delete("/:cid/products/:pid", async (req, res) => {
 try {

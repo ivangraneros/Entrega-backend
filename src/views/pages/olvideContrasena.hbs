@@ -1,0 +1,12 @@
+<div class="container mt-5">
+    <h2>¿Olvidaste tu contraseña?</h2>
+    <p>Ingresá tu mail y te enviaremos un link para recuperarla.</p>
+    
+    <form action="/api/sessions/olvidecontrasena" method="POST">
+        <div class="mb-3">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control" required placeholder="tu@mail.com">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar mail de recuperación</button>
+    </form>
+</div>

@@ -41,7 +41,6 @@ class CartManager {
     }
 }
 
-
     async updateCartProducts(cartId, updateData) {
         try {
             const updatedCart = await Cart.findByIdAndUpdate(cartId, updateData, { new: true }).populate('products.product').lean();

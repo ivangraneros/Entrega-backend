@@ -1,11 +1,13 @@
 import express from 'express';
 const router = express.Router();
 import { paths } from '../config/config.js';
+import passport from 'passport';
+import { authorization } from '../middlewares/auth.middleware.js';
 
 
 import CartManager from '../data-access-object/cartDao.js';
 const newCartManager = new CartManager("data/carts.json");
-
+import cartController from '../controllers/cart.controller.js';
 
 
 
@@ -39,7 +41,10 @@ router.post("/", async (req, res) => {
     }
 });
 
-  router.post("/:cartId/products/:productId",async (req, res) => {
+  router.post("/:cartId/products/:productId",
+    passport.authenticate('jwt', {session: false}),
+    authorization("user"),
+    async (req, res) => {
     const { cartId, productId } = req.params;
     const updatedCart = await newCartManager.addProductToCart(cartId, productId);
     if (updatedCart) {
@@ -48,6 +53,12 @@ router.post("/", async (req, res) => {
       res.status(404).json({ message: "Error interno" });
     }
 });
+
+router.post('/:cid/purchase', 
+    passport.authenticate('jwt', { session: false }), 
+    cartController.purchase 
+    
+);
 
 
 export default router;

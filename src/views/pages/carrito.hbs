@@ -16,4 +16,14 @@
         <a href="/products">Ir a comprar</a>
     {{/if}}
 </div>
+<div id="cart-container">
+    <h3>Total: {{total}}</h3></h3>
+    <form action="/api/carts/{{cart._id}}/purchase" method="POST">
+    <button type="submit" id="btn-purchase" data-cart-id="{{cartId}}" class="btn-success">
+        Finalizar Compra
+    </button>
+    </form>
+    
+</div>
+
 {{> footer }}

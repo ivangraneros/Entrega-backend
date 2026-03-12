@@ -16,4 +16,13 @@ router.get("/perfil", passport.authenticate('jwt', { session: false, failureRedi
     res.render("pages/current", { user: req.user });
 });
 
+router.get("/resetcontrasena", (req, res) => {
+    const { token } = req.query;
+    res.render("pages/resetContraseña", { token });
+});
+
+router.get("/olvidecontrasena", (req, res) => {
+    res.render("pages/olvideContrasena");
+});
+
 export default router;

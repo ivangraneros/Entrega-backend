@@ -5,12 +5,14 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import userModel from "../models/user.model.js";
 import cartModel from "../models/cart.model.js";
+import sessionsController from "../controllers/sessions.controller.js";
+
 
 
 router.post('/registro', async (req, res) => {
     try {
         let { first_name, last_name, email, age, password } = req.body
-        if (!first_name || !last_name || !email || !password) return res.status(400).send({ error: 'Ingrese todos los datos' })
+        if (!first_name || !last_name || !email || !password || !age) return res.status(400).send({ error: 'Ingrese todos los datos' })
 
         let usuario = await userModel.find({ email }).lean()
         if (usuario.length > 0) return res.status(400).send({ error: `El usuario ${email} ya existe en la DB` })
@@ -37,32 +39,14 @@ router.post('/registro', async (req, res) => {
 
 
 
-router.post('/login', async (req, res) => {
-    let { email, password } = req.body
-    if (!email || !password) return res.status(400).send({ error: 'Ingrese email y password' })
-        
-    const usuario = await userModel.findOne({ email }).lean()
+//rutas de recuperar contraseña pero mas limpias
 
-    if (!usuario) return res.status(400).send({ error: `Error credenciales` });
+router.post('/login', sessionsController.login);
+router.get('/current',
+    passport.authenticate('jwt', {session: false}),
+    sessionsController.current);
+router.post("/olvidecontrasena", sessionsController.olvideContraseña);
+router.post("/resetcontrasena", sessionsController.resetContraseña);
 
-
-    if (!usuario.password || !bcrypt.compareSync(password, usuario.password)) {
-    return res.status(400).send({ error: `Error credenciales` });
-    }
-
-
-    
-    delete usuario.password
-
-
-    let token = jwt.sign(usuario, "secretKey", { expiresIn: '24h' })
-
-    res.cookie("tokencookie", token, { httpOnly: true }).send({ status: "success", message: "Usuario logueado"})
-})
-
-
-router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {    
-    res.send({ status: "success", payload: req.user })
-})
 
 export default router;

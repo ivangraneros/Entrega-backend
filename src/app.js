@@ -4,6 +4,7 @@ import  routes from './routes/index.js';
 import  path  from 'path';
 import  mongoose  from 'mongoose';
 import passport from "passport";
+import configuracion from './config/config.js';
 
 
 import cookieParser from "cookie-parser"
@@ -19,6 +20,8 @@ import  CartManager  from"./data-access-object/cartDao.js";
 import  ProductManager  from"./data-access-object/productDao.js";
 
 import { PORT, paths } from './config/config.js';
+import { errorHandler } from './middlewares/error.middleware.js';
+import { config } from 'process';
 
 const newCartManager = new CartManager();
 const newProductManager = new ProductManager();
@@ -67,9 +70,11 @@ app.set("views", paths.views);
 
 
 mongoose
-  .connect("mongodb+srv://ivancapo2003_db_user:Ivan2003@cluster0.kfrcnez.mongodb.net/ecommerce?appName=Cluster0")
+  .connect(configuracion.mongo_uri)
   .then(() => console.log("Conectado a la base de datos MongoDB"))
   .catch((err) => console.error("Error al conectar a la base de datos MongoDB:", err));
+
+
 
 // conexion del servidor con socket.io
 
@@ -105,6 +110,9 @@ io.on("connection", async (socket) => {
     }
   });
 });
+
+
+app.use(errorHandler)
 
 
 export default app;

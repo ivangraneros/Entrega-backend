@@ -1,5 +1,7 @@
 import express from "express";
 const router = express.Router();
+import passport from "passport";
+import { authorization } from "../middlewares/auth.middleware.js";
 
 
 import ProductManager from '../data-access-object/productDao.js';
@@ -26,7 +28,10 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/",
+  passport.authenticate('jwt', {session: false}),
+  authorization("admin"),
+  async (req, res) => {
   try {
   const productData = req.body;
   console.log("Body recibido:", productData);
@@ -48,7 +53,10 @@ router.put("/:id", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id",
+  passport.authenticate('jwt', {session: false}),
+  authorization("admin"),
+  (req, res) => {
   const { id } = req.params;
   const deleted = newProductManager.deleteProductById(id);
   if (deleted) {
