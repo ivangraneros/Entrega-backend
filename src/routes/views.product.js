@@ -6,6 +6,7 @@ import productsModel from "../models/products.model.js";
 
 
 import ProductManager from"../data-access-object/productDao.js";
+import passport from "passport";
 const newProductManager = new ProductManager();
 
 
@@ -31,10 +32,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/realtimeproducts', async (req, res) => {
+router.get('/realtimeproducts',
+  passport.authenticate('jwt', { session: false, failureRedirect: '/login' }),
+  
+  async (req, res) => {
   try {
     const products = await newProductManager.getAllProducts({});
-    res.render("pages/realTimeProducts", { products });
+
+    res.render("pages/realTimeProducts", { products,
+      user : req.user });
+
   } catch (error) {
     res.status(500).send("Error al cargar la vista de productos en tiempo real");
   }

@@ -47,63 +47,60 @@ if (formEliminar) {
 
 
 // Función para inicializar el carrito
-const inicializarCarrito = async () => {
-    let cid = localStorage.getItem('cartId');
-    if (!cid || cid === "null" || cid === "undefined") {
-        try {
-            const response = await fetch('/carrito', { method: 'POST' });
-            const data = await response.json();
-            const actualId = data.id || (data.payload && data.payload.id);
+// const inicializarCarrito = async () => {
+//     let cid = localStorage.getItem('cartId');
+//     if (!cid || cid === "null" || cid === "undefined") {
+//         try {
+//             const response = await fetch('/carrito', { method: 'POST' });
+//             const data = await response.json();
+//             const actualId = data.id || (data.payload && data.payload.id);
 
-            if (actualId) {
-                localStorage.setItem('cartId', actualId);
-                console.log("✅ Carrito guardado con ID:", actualId);
-            } else {
-                console.error("❌ No se encontró la propiedad 'id' en la respuesta:", data);
-            }
-        } catch (error) {
-            console.error("❌ Error al crear carrito:", error);
-        }
-    }
-};
+//             if (actualId) {
+//                 localStorage.setItem('cartId', actualId);
+//                 console.log("✅ Carrito guardado con ID:", actualId);
+//             } else {
+//                 console.error("❌ No se encontró la propiedad 'id' en la respuesta:", data);
+//             }
+//         } catch (error) {
+//             console.error("❌ Error al crear carrito:", error);
+//         }
+//     }
+// };
 
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarCarrito();
+// document.addEventListener('DOMContentLoaded', () => {
+//     inicializarCarrito();
 
-    const btnCarrito = document.getElementById('btn-ver-carrito');
-    if (btnCarrito) {
-        btnCarrito.addEventListener('click', () => {
-            const currentCid = localStorage.getItem('cartId');
-            if (currentCid && currentCid !== "null") {
-                window.location.href = `/carrito/${currentCid}`;
-            } else {
-                alert("No se pudo recuperar el ID del carrito. Intenta recargar la página.");
-            }
-        });
-    }
-});
+//     const btnCarrito = document.getElementById('btn-ver-carrito');
+//     if (btnCarrito) {
+//         btnCarrito.addEventListener('click', () => {
+//             const currentCid = localStorage.getItem('cartId');
+//             if (currentCid && currentCid !== "null") {
+//                 window.location.href = `/carrito/${currentCid}`;
+//             } else {
+//                 alert("No se pudo recuperar el ID del carrito. Intenta recargar la página.");
+//             }
+//         });
+//     }
+// });
 
 
-const irAlCarrito = () => {
-    const cid = localStorage.getItem('cartId');
-    if (cid && cid !== "null") {
-        window.location.href = `/carrito/${cid}`; 
-    } else {
-        alert("Aún no tienes un carrito activo.");
-    }
-};
+// const irAlCarrito = () => {
+//     const cid = localStorage.getItem('cartId');
+//     if (cid && cid !== "null") {
+//         window.location.href = `/carrito/${cid}`; 
+//     } else {
+//         alert("Aún no tienes un carrito activo.");
+//     }
+// };
 
-document.getElementById('btn-ver-carrito')?.addEventListener('click', irAlCarrito);
+// document.getElementById('btn-ver-carrito')?.addEventListener('click', irAlCarrito);
 
 
 const agregarAlCarrito = async (productId) => {
-    const cartId = localStorage.getItem('cartId');
-
-    if (!cartId) return alert("No hay carrito");
-
     try {
-        const response = await fetch(`/carrito/${cartId}/products/${productId}`, {
-            method: 'POST'
+        const response = await fetch(`/api/carts/products/${productId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
         });
 
         const data = await response.json();

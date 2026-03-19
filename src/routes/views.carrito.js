@@ -31,11 +31,17 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.post("/:cid/products/:pid", async (req, res) => {
+router.post("/products/:pid", async (req, res) => {
   try {
-    const { cid, pid } = req.params;
+    const { pid } = req.params;
 
-    const cart = await cartModel.findById(cid);
+    const cartId = req.user.cart;
+
+    if(!cartId) {
+      return res.status(400).json({ status: "error", message: "El usuario no tiene un carrito asociado" });
+    }
+
+    const cart = await cartModel.findById(cartId);
     if (!cart) {
       return res.status(404).json({ status: "error", message: "Carrito no encontrado" });
     }
